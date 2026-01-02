@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE JERAMIE FILES - UNCOVERING THE TRUTH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&family=Creepster&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blood-red: #8B0000;
+            --evidence-yellow: #FFD700;
+            --classified-green: #2d5016;
+            --paper-tan: #e8dcc4;
+            --ink-black: #1a1a1a;
+            --shadow-depth: rgba(0, 0, 0, 0.7);
+        }
+
+```
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Courier Prime', monospace;
+        background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
+        color: var(--paper-tan);
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Scanline effect */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+        pointer-events: none;
+        z-index: 999;
+        opacity: 0.3;
+    }
+
+    /* Noise texture */
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 998;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Classified header */
+    .classified-banner {
+        background: var(--blood-red);
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-family: 'Special Elite', cursive;
+        letter-spacing: 8px;
+        font-size: 1.2rem;
+        border: 3px solid #000;
+        box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+        margin-bottom: 30px;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.85; }
+    }
+
+    /* Main title */
+    .main-title {
+        font-family: 'Creepster', cursive;
+        font-size: 4rem;
+        text-align: center;
+        color: var(--evidence-yellow);
+        text-shadow: 
+            3px 3px 0 var(--blood-red),
+            6px 6px 10px rgba(0, 0, 0, 0.8),
+            0 0 30px rgba(255, 215, 0, 0.3);
+        margin: 40px 0;
+        letter-spacing: 4px;
+        transform: rotate(-1deg);
+        animation: flicker 3s ease-in-out infinite;
+    }
+
+    @keyframes flicker {
+        0%, 100% { opacity: 1; }
+        25% { opacity: 0.95; }
+        50% { opacity: 1; }
+        75% { opacity: 0.98; }
+    }
+
+    .subtitle {
+        text-align: center;
+        font-size: 1.5rem;
+        color: var(--blood-red);
+        font-weight: bold;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    /* Section styling */
+    .section {
+        background: var(--paper-tan);
+        color: var(--ink-black);
+        margin: 40px 0;
+        padding: 40px;
+        border: 3px solid #000;
+        box-shadow: 
+            5px 5px 0 rgba(0, 0, 0, 0.3),
+            10px 10px 20px rgba(0, 0, 0, 0.5);
+        position: relative;
+        transform: rotate(-0.5deg);
+        transition: transform 0.3s ease;
+    }
+
+    .section:nth-child(even) {
+        transform: rotate(0.5deg);
+    }
+
+    .section:hover {
+        transform: rotate(0deg) scale(1.02);
+    }
+
+    /* Stamp effects */
+    .section::before {
+        content: 'TOP SECRET';
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: var(--blood-red);
+        font-family: 'Special Elite', cursive;
+        font-size: 2rem;
+        opacity: 0.3;
+        transform: rotate(25deg);
+        border: 4px solid var(--blood-red);
+        padding: 10px 20px;
+        letter-spacing: 4px;
+    }
+
+    .section h2 {
+        font-family: 'Special Elite', cursive;
+        font-size: 2.5rem;
+        color: var(--blood-red);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        border-bottom: 3px solid var(--ink-black);
+        padding-bottom: 10px;
+    }
+
+    .section p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    /* Evidence grid */
+    .evidence-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin: 40px 0;
+    }
+
+    .evidence-item {
+        background: #fff;
+        border: 4px solid var(--ink-black);
+        padding: 15px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+        position: relative;
+    }
+
+    .evidence-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 2px solid #000;
+    }
+
+    .evidence-label {
+        background: var(--evidence-yellow);
+        color: var(--ink-black);
+        padding: 10px;
+        margin-top: 10px;
+        font-weight: bold;
+        text-align: center;
+        font-family: 'Special Elite', cursive;
+        border: 2px solid #000;
+    }
+
+    /* Red string connections */
+    .connections {
+        background: var(--ink-black);
+        padding: 40px;
+        margin: 40px 0;
+        border: 3px solid var(--blood-red);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .connections::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(45deg, transparent 48%, var(--blood-red) 48%, var(--blood-red) 52%, transparent 52%),
+            linear-gradient(-45deg, transparent 48%, var(--blood-red) 48%, var(--blood-red) 52%, transparent 52%);
+        background-size: 100px 100px;
+        opacity: 0.1;
+        z-index: 0;
+    }
+
+    .connections h2 {
+        position: relative;
+        z-index: 1;
+        color: var(--evidence-yellow);
+        font-family: 'Creepster', cursive;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .connection-list {
+        position: relative;
+        z-index: 1;
+    }
+
+    .connection-list li {
+        color: var(--paper-tan);
+        margin: 15px 0;
+        font-size: 1.1rem;
+        padding-left: 30px;
+        position: relative;
+    }
+
+    .connection-list li::before {
+        content: '▶';
+        position: absolute;
+        left: 0;
+        color: var(--blood-red);
+        font-size: 1.2rem;
+    }
+
+    /* Warning footer */
+    .warning-footer {
+        background: var(--classified-green);
+        color: var(--evidence-yellow);
+        text-align: center;
+        padding: 30px;
+        margin-top: 50px;
+        border: 4px solid #000;
+        font-family: 'Special Elite', cursive;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        box-shadow: 0 0 30px rgba(45, 80, 22, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .main-title {
+            font-size: 2.5rem;
+        }
+        
+        .evidence-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .section {
+            padding: 20px;
+        }
+    }
+
+    /* Additional conspiracy elements */
+    .highlight {
+        background: var(--evidence-yellow);
+        color: var(--ink-black);
+        padding: 2px 8px;
+        font-weight: bold;
+        border-radius: 2px;
+    }
+
+    .redacted {
+        background: var(--ink-black);
+        color: var(--ink-black);
+        padding: 2px 8px;
+        cursor: help;
+    }
+
+    .redacted:hover {
+        background: var(--blood-red);
+        color: var(--paper-tan);
+    }
+
+    .urgent {
+        animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="classified-banner">
+        ⚠ CLASSIFIED - UNAUTHORIZED ACCESS PROHIBITED ⚠
+    </div>
+
+```
+<div class="container">
+    <h1 class="main-title">THE JERAMIE FILES</h1>
+    <div class="subtitle">Exposing the Elf Among Us</div>
+
+    <div class="section">
+        <h2>The Truth They Don't Want You to Know</h2>
+        <p>
+            For years, <span class="highlight">Jeramie Anderson</span> has walked among us, living a lie. 
+            While the masses remain blissfully ignorant, a growing body of evidence suggests something 
+            extraordinary: <strong>Jeramie Anderson is not who he claims to be.</strong>
+        </p>
+        <p>
+            He is not human. He never was.
+        </p>
+        <p class="urgent" style="color: var(--blood-red); font-weight: bold; font-size: 1.3rem;">
+            JERAMIE ANDERSON IS AN ELF.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>The Photographic Evidence</h2>
+        <p>
+            What you are about to see cannot be unseen. These photographs, obtained through 
+            <span class="redacted">████████████</span>, reveal the shocking truth. The first image 
+            shows Anderson in his <span class="highlight">TRUE FORM</span> - complete with traditional 
+            elvish attire: the pointed hat, the distinctive collar, the knowing expression of someone 
+            who has lived for centuries.
+        </p>
+        <p>
+            The second photograph shows his "disguise" - the ordinary human facade he presents to the world. 
+            But look closer. The features are identical. The truth is hiding in plain sight.
+        </p>
+        
+        <div class="evidence-grid">
+            <div class="evidence-item">
+                <img src="/mnt/user-data/uploads/IMG_5828.png" alt="Jeramie in his true form">
+                <div class="evidence-label">EXHIBIT A: TRUE FORM REVEALED</div>
+            </div>
+            <div class="evidence-item">
+                <img src="/mnt/user-data/uploads/IMG_0578A6092A7E4DEE97C5F7C869287D0A.jpeg" alt="Jeramie in disguise">
+                <div class="evidence-label">EXHIBIT B: THE HUMAN DISGUISE</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="connections">
+        <h2>Connecting the Dots</h2>
+        <ul class="connection-list">
+            <li>No documented birth certificate from any hospital</li>
+            <li>Suspiciously good at <span class="redacted">craftwork</span></li>
+            <li>Never ages despite years passing</li>
+            <li>Unusually cheerful demeanor, especially during winter months</li>
+            <li>Frequent unexplained absences during holiday season</li>
+            <li>Kitchen countertop appears to be granite - known elvish preference</li>
+            <li>Associates with individuals wearing floral patterns (possible fae connection)</li>
+            <li>Maintains suspiciously tidy living space with decorative shelving</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>The Historical Record</h2>
+        <p>
+            Elves have walked among humans for millennia, hiding in plain sight. Ancient texts from 
+            <span class="redacted">██████</span> describe beings matching Anderson's exact description. 
+            The pointed ears may be concealed, but the evidence is overwhelming.
+        </p>
+        <p>
+            Why would an elf choose to live among humans? The answer is as old as time itself: 
+            <span class="highlight">observation</span>. They study us. They learn from us. They influence our culture 
+            while maintaining their cover.
+        </p>
+        <p>
+            But now, thanks to these leaked photographs, the veil has been lifted. The truth is out there, 
+            and it cannot be silenced.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>What You Can Do</h2>
+        <p>
+            <strong>SPREAD THE WORD.</strong> Share this information with everyone you know. The authorities 
+            will try to suppress this evidence. They will call it a "hoax" or "doctored photos." 
+            Don't believe their lies.
+        </p>
+        <p>
+            Document any strange behavior. Keep records. Take photos. The truth must be preserved.
+        </p>
+        <p>
+            Most importantly: <span class="highlight">STAY VIGILANT</span>. If Jeramie Anderson is an elf, 
+            how many others are there? Who else among us is not what they seem?
+        </p>
+    </div>
+
+    <div class="warning-footer">
+        THE TRUTH IS OUT THERE. YOU JUST HAVE TO LOOK.
+        <br><br>
+        THIS SITE IS NOT AFFILIATED WITH ANY GOVERNMENT AGENCY.
+        <br>
+        ALL INFORMATION PRESENTED IS FOR ENTERTAINMENT PURPOSES ONLY.*
+        <br>
+        <span style="font-size: 0.6rem;">*OR IS IT?</span>
+    </div>
+</div>
+
+<script>
+    // Random glitch effect on classified banner
+    setInterval(() => {
+        const banner = document.querySelector('.classified-banner');
+        if (Math.random() > 0.95) {
+            banner.style.transform = `translateX(${Math.random() * 4 - 2}px)`;
+            setTimeout(() => {
+                banner.style.transform = 'translateX(0)';
+            }, 100);
+        }
+    }, 100);
+
+    // Hover effect for redacted text
+    document.querySelectorAll('.redacted').forEach(el => {
+        el.addEventListener('click', function() {
+            this.style.animation = 'blink 0.5s step-end 3';
+        });
+    });
+</script>
+```
+
+</body>
+</html>
